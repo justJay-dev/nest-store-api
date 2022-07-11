@@ -12,7 +12,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 @ApiTags('products')
 @Controller('products')
@@ -69,7 +69,7 @@ export class ProductsController {
   @ApiResponse({
     status: 200,
     description: 'Successful operation.',
-    type: Product,
+    type: UpdateResult,
   })
   @ApiResponse({
     status: 403,
