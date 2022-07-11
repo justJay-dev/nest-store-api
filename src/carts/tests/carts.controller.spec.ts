@@ -18,6 +18,7 @@ describe('CartsController', () => {
           type: 'sqlite',
           database: 'shoppingDBsb.db',
           entities: ['src/**/*.entity{.ts,.js}'],
+          dropSchema: true,
           synchronize: true,
         }),
         TypeOrmModule.forFeature([Cart, Product]),
@@ -32,8 +33,6 @@ describe('CartsController', () => {
 
   afterAll(async () => {
     //ensure we have cleared test data.
-    //await controller.remove(mockCarts[0].id);
-    //await controller.remove(mockCarts[1].id);
     await moduleRef.close();
   });
 

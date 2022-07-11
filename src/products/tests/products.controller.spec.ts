@@ -19,6 +19,7 @@ describe('ProductsController', () => {
           database: 'shoppingDBsb.db',
           entities: ['src/**/*.entity{.ts,.js}'],
           synchronize: true,
+          dropSchema: true,
         }),
         TypeOrmModule.forFeature([Cart, Product]),
       ],
@@ -32,8 +33,6 @@ describe('ProductsController', () => {
 
   afterAll(async () => {
     //ensure we have cleared test data.
-    await controller.remove(mockProducts[0].id);
-    await controller.remove(mockProducts[1].id);
     await moduleRef.close();
   });
 
