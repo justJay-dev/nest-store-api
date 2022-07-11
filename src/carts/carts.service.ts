@@ -13,7 +13,7 @@ export class CartsService {
   ) {}
 
   async create(createCartDto: CreateCartDto) {
-    return await this.cartRepository.save({ ...createCartDto });
+    return await this.cartRepository.save({ ...createCartDto, products: [] });
   }
 
   async findAll() {

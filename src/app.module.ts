@@ -9,7 +9,7 @@ import { CartsModule } from './carts/carts.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'shoppingDBsb',
+      database: 'shoppingDBsb.db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),

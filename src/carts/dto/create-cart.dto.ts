@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty } from 'class-validator';
 
 export class CreateCartDto {
-  @ApiProperty()
+  @ApiProperty({ example: 1 })
   @IsString()
   @IsNotEmpty()
   userId: number;

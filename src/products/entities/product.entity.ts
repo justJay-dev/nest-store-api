@@ -7,23 +7,23 @@ export class Product {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Product 1' })
   @Column()
   title: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 69.99 })
   @Column()
   price: number;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Product 1 description' })
   @Column()
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'https://example.com/product-1.jpg' })
   @Column()
   image: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'clothing' })
   @Column()
   category: string;
 }
