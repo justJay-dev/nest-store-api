@@ -32,8 +32,8 @@ describe('CartsController', () => {
 
   afterAll(async () => {
     //ensure we have cleared test data.
-    await controller.remove(mockCarts[0].id);
-    await controller.remove(mockCarts[1].id);
+    //await controller.remove(mockCarts[0].id);
+    //await controller.remove(mockCarts[1].id);
     await moduleRef.close();
   });
 

@@ -12,7 +12,7 @@ import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Cart } from './entities/cart.entity';
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 @ApiTags('carts')
 @Controller('carts')
@@ -69,7 +69,7 @@ export class CartsController {
   @ApiResponse({
     status: 200,
     description: 'Successful operation.',
-    type: Cart,
+    type: UpdateResult,
   })
   @ApiResponse({
     status: 403,

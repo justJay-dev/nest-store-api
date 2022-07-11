@@ -20,6 +20,15 @@ export const mockCarts: Cart[] = [
         image: 'https://example.com/product-3.jpg',
         category: 'clothing',
       },
+      {
+        id: 'b4c3c33b-302a-40bd-a06d-f5badc5cb4c7',
+        title: 'Cargo Skirt',
+        price: 86.99,
+        description: 'All the storage you could ever want ',
+        image:
+          'https://cdn11.bigcommerce.com/s-c7qlm8a06j/images/stencil/original/products/1110/7535/egirl-punk-a-line-pocket-chain-mini-skirt-cosmique-studio__31512.1643984453.jpg?c=1',
+        category: 'Skirt',
+      },
     ],
   },
   {
