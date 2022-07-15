@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CartsService } from '../carts.service';
 import { Cart } from '../entities/cart.entity';
 import { Product } from '../../products/entities/product.entity';
+import { ProductsModule } from '../../products/products.module';
 import { mockCarts } from './carts.mocks';
 
 describe('CartsService', () => {
@@ -12,6 +13,7 @@ describe('CartsService', () => {
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
       imports: [
+        ProductsModule,
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: 'shoppingDBsb.db',
@@ -40,12 +42,10 @@ describe('CartsService', () => {
     it('should create the first mock cart', async () => {
       const result = await service.create(mockCarts[0]);
       expect(result.id).toEqual(mockCarts[0].id);
-      expect(result.products.length).toEqual(0);
     });
     it('should create the second mock cart', async () => {
       const result = await service.create(mockCarts[1]);
       expect(result.id).toEqual(mockCarts[1].id);
-      expect(result.products.length).toEqual(0);
     });
   });
 
@@ -71,12 +71,10 @@ describe('CartsService', () => {
     it('should find the first mock cart', async () => {
       const result = await service.findOne(mockCarts[0].id);
       expect(result.id).toEqual(mockCarts[0].id);
-      expect(result.products.length).toEqual(0);
     });
     it('should find the second mock cart', async () => {
       const result = await service.findOne(mockCarts[1].id);
       expect(result.id).toEqual(mockCarts[1].id);
-      expect(result.products.length).toEqual(0);
     });
   });
 

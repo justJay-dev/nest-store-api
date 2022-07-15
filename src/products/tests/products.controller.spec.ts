@@ -32,6 +32,8 @@ describe('ProductsController', () => {
   });
 
   afterAll(async () => {
+    await controller.remove(mockProducts[0].id);
+    await controller.remove(mockProducts[1].id);
     //ensure we have cleared test data.
     await moduleRef.close();
   });
@@ -93,7 +95,7 @@ describe('ProductsController', () => {
   describe('findAll', () => {
     it('should find all products', async () => {
       const result = await controller.findAll();
-      expect(result.length).toEqual(1);
+      expect(result.length).toEqual(2);
     });
   });
 
