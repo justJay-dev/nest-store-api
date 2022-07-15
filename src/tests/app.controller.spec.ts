@@ -19,6 +19,10 @@ describe('AppController', () => {
     await moduleRef.close();
   });
 
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+
   describe('root', () => {
     it('should return "Hello Nest Store API!!"', () => {
       expect(controller.getHello()).toBe('Hello Nest Store API!!');

@@ -9,7 +9,6 @@ async function bootstrap() {
     .setDescription('a fake store api port to nest')
     .setVersion('1.0')
     .addTag('products')
-    .addTag('categories')
     .addTag('carts')
     .build();
   const document = SwaggerModule.createDocument(app, config);
