@@ -2,7 +2,7 @@
 
 Built with [Nest](https://github.com/nestjs/nest) framework.
 
-This is a good faith effort to rebuild the existing functionality from [link-to-the-store-api-here](http://todo.do) without any extra dependences for running locally, and using relational data instead of nosql.
+This is a good faith effort to rebuild the existing functionality from [fakestoreapi.com](https://github.com/keikaavousi/fake-store-api) without any extra dependences for running locally, and using relational data instead of nosql.
 
 data is stored in a local sqlitedb, all of the entities should also work in postgres if you were so inclined.
 
