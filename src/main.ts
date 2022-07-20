@@ -10,6 +10,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('products')
     .addTag('carts')
+    .addTag('users')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
