@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  HttpException,
 } from '@nestjs/common';
 import { CartsService } from './carts.service';
 import { CreateCartDto } from './dto/create-cart.dto';
@@ -30,8 +31,17 @@ export class CartsController {
     status: 403,
     description: 'Forbidden.',
   })
-  create(@Body() createCartDto: CreateCartDto) {
-    return this.cartsService.create(createCartDto);
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
+  async create(@Body() createCartDto: CreateCartDto) {
+    try {
+      return await this.cartsService.create(createCartDto);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Get()
@@ -45,8 +55,17 @@ export class CartsController {
     status: 403,
     description: 'Forbidden.',
   })
-  findAll() {
-    return this.cartsService.findAll();
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
+  async findAll() {
+    try {
+      return await this.cartsService.findAll();
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Get(':id')
@@ -60,8 +79,17 @@ export class CartsController {
     status: 403,
     description: 'Forbidden.',
   })
-  findOne(@Param('id') id: string) {
-    return this.cartsService.findOne(id);
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
+  async findOne(@Param('id') id: string) {
+    try {
+      return await this.cartsService.findOne(id);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Patch(':id')
@@ -75,8 +103,17 @@ export class CartsController {
     status: 403,
     description: 'Forbidden.',
   })
-  update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
-    return this.cartsService.update(id, updateCartDto);
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
+  async update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
+    try {
+      return await this.cartsService.update(id, updateCartDto);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Delete(':id')
@@ -90,7 +127,16 @@ export class CartsController {
     status: 403,
     description: 'Forbidden.',
   })
-  remove(@Param('id') id: string) {
-    return this.cartsService.remove(id);
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
+  async remove(@Param('id') id: string) {
+    try {
+      return await this.cartsService.remove(id);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 }

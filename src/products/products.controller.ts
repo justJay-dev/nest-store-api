@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  HttpException,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -30,8 +31,17 @@ export class ProductsController {
     status: 403,
     description: 'Forbidden.',
   })
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
   async create(@Body() createProductDto: CreateProductDto) {
-    return await this.productsService.create(createProductDto);
+    try {
+      return await this.productsService.create(createProductDto);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Get()
@@ -45,8 +55,17 @@ export class ProductsController {
     status: 403,
     description: 'Forbidden.',
   })
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
   async findAll() {
-    return await this.productsService.findAll();
+    try {
+      return await this.productsService.findAll();
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Get(':id')
@@ -60,8 +79,17 @@ export class ProductsController {
     status: 403,
     description: 'Forbidden.',
   })
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
   async findOne(@Param('id') id: string) {
-    return await this.productsService.findOne(id);
+    try {
+      return await this.productsService.findOne(id);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Patch(':id')
@@ -75,11 +103,20 @@ export class ProductsController {
     status: 403,
     description: 'Forbidden.',
   })
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
   async update(
     @Param('id') id: string,
     @Body() updateProductDto: UpdateProductDto,
   ) {
-    return await this.productsService.update(id, updateProductDto);
+    try {
+      return await this.productsService.update(id, updateProductDto);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 
   @Delete(':id')
@@ -93,7 +130,16 @@ export class ProductsController {
     status: 403,
     description: 'Forbidden.',
   })
+  @ApiResponse({
+    status: 500,
+    description: 'Error',
+    type: HttpException,
+  })
   async remove(@Param('id') id: string) {
-    return await this.productsService.remove(id);
+    try {
+      return await this.productsService.remove(id);
+    } catch (error) {
+      throw new HttpException(error.toString(), 500);
+    }
   }
 }

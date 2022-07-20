@@ -33,11 +33,8 @@ describe('AppController (e2e)', () => {
         .expect('OK');
     });
   });
-  describe('Products Module', () => {
-    it('/products (GET)', () => {
-      return request(app.getHttpServer()).get('/products').expect(200);
-    });
 
+  describe('Products Module Happy Path', () => {
     it('/products (POST)', () => {
       return request(app.getHttpServer())
         .post('/products')
@@ -45,12 +42,6 @@ describe('AppController (e2e)', () => {
           ...mockProducts[0],
         })
         .expect(201);
-    });
-
-    it('/products/:id (GET)', () => {
-      return request(app.getHttpServer())
-        .get(`/products/${mockProducts[0].id}`)
-        .expect(200);
     });
 
     it('/products/:id (PATCH)', () => {
@@ -62,6 +53,20 @@ describe('AppController (e2e)', () => {
         .expect(200);
     });
 
+    it('/products (GET)', () => {
+      return request(app.getHttpServer())
+        .get('/products')
+        .expect(200)
+        .expect([mockProducts[0]]);
+    });
+
+    it('/products/:id (GET)', () => {
+      return request(app.getHttpServer())
+        .get(`/products/${mockProducts[0].id}`)
+        .expect(200)
+        .expect(mockProducts[0]);
+    });
+
     it('/products/:id (DELETE)', () => {
       return request(app.getHttpServer())
         .delete(`/products/${mockProducts[0].id}`)
@@ -69,18 +74,18 @@ describe('AppController (e2e)', () => {
     });
   });
 
-  describe('Carts Module', () => {
-    it('/carts (GET)', () => {
-      return request(app.getHttpServer()).get('/carts').expect(200);
-    });
-
-    it('/carts/:id (POST)', () => {
+  describe('Carts Module Happy Path', () => {
+    it('/carts (POST)', () => {
       return request(app.getHttpServer())
         .post('/carts')
         .send({
           ...mockCarts[0],
         })
         .expect(201);
+    });
+
+    it('/carts (GET)', () => {
+      return request(app.getHttpServer()).get('/carts').expect(200);
     });
 
     it('/carts/:id (GET)', () => {
