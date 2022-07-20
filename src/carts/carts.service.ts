@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 import { Cart } from './entities/cart.entity';
@@ -17,6 +17,7 @@ export class CartsService {
       return await this.cartRepository.save({ ...createCartDto, products: [] });
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -25,6 +26,7 @@ export class CartsService {
       return await this.cartRepository.find();
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -33,6 +35,7 @@ export class CartsService {
       return await this.cartRepository.findOneOrFail({ where: { id } });
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -44,6 +47,7 @@ export class CartsService {
       return await this.cartRepository.update(id, updateCartDto);
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -52,6 +56,7 @@ export class CartsService {
       return await this.cartRepository.delete(id);
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 }

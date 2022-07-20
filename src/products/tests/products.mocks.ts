@@ -17,3 +17,20 @@ export const mockProducts: Product[] = [
     category: 'clothing',
   },
 ];
+
+export const malformedProducts: any[] = [
+  {
+    notTitle: 'Product 0',
+    price: 68.99,
+    description: 'Product 0 description',
+    image: 'https://example.com/product-2.jpg',
+    category: 'clothing',
+  },
+  {
+    notTitle: 'Product 1',
+    price: 68.99,
+    description: 'Product 1 description',
+    image: 'https://example.com/product-3.jpg',
+    category: 'clothing',
+  },
+];

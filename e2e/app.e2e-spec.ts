@@ -4,17 +4,21 @@ import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { ProductsModule } from '../src/products/products.module';
 import { CartsModule } from '../src/carts/carts.module';
-import { mockProducts } from '../src/products/tests/products.mocks';
-import { mockCarts } from '../src/carts/tests/carts.mocks';
+import {
+  mockProducts,
+  malformedProducts,
+} from '../src/products/tests/products.mocks';
+import { mockCarts, malformedCarts } from '../src/carts/tests/carts.mocks';
 describe('AppController (e2e)', () => {
+  let moduleRef: TestingModule;
   let app: INestApplication;
 
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
       imports: [AppModule, ProductsModule, CartsModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = moduleRef.createNestApplication();
     await app.init();
   });
 
@@ -74,6 +78,26 @@ describe('AppController (e2e)', () => {
     });
   });
 
+  describe('Products Module Error Path', () => {
+    it('/products (POST)', () => {
+      return request(app.getHttpServer())
+        .post('/products')
+        .send({
+          ...malformedProducts[0],
+        })
+        .expect(500);
+    });
+
+    it('/products/:id (PATCH)', () => {
+      return request(app.getHttpServer())
+        .patch(`/products/${malformedProducts[0].id}`)
+        .send({
+          ...malformedProducts[0],
+        })
+        .expect(500);
+    });
+  });
+
   describe('Carts Module Happy Path', () => {
     it('/carts (POST)', () => {
       return request(app.getHttpServer())
@@ -107,6 +131,26 @@ describe('AppController (e2e)', () => {
       return request(app.getHttpServer())
         .delete(`/carts/${mockCarts[0].id}`)
         .expect(200);
+    });
+  });
+
+  describe('Carts Module Error Path', () => {
+    it('/carts (POST)', () => {
+      return request(app.getHttpServer())
+        .post('/carts')
+        .send({
+          ...malformedCarts[0],
+        })
+        .expect(500);
+    });
+
+    it('/carts/:id (PATCH)', () => {
+      return request(app.getHttpServer())
+        .patch(`/carts/${malformedCarts[0].id}`)
+        .send({
+          ...malformedCarts[0],
+        })
+        .expect(500);
     });
   });
 });

@@ -54,3 +54,44 @@ export const mockCarts: Cart[] = [
     ],
   },
 ];
+
+export const malformedCarts: any[] = [
+  {
+    notUserId: 0,
+    products: [
+      {
+        title: 'Product 0',
+        price: 68.99,
+        description: 'Product 0 description',
+        image: 'https://example.com/product-2.jpg',
+        category: 'clothing',
+      },
+      {
+        title: 'Product 1',
+        price: 68.99,
+        description: 'Product 1 description',
+        image: 'https://example.com/product-3.jpg',
+        category: 'clothing',
+      },
+    ],
+  },
+  {
+    notUserId: 1,
+    products: [
+      {
+        title: 'Product 0',
+        price: 68.99,
+        description: 'Product 0 description',
+        image: 'https://example.com/product-2.jpg',
+        category: 'clothing',
+      },
+      {
+        title: 'Product 1',
+        price: 68.99,
+        description: 'Product 1 description',
+        image: 'https://example.com/product-3.jpg',
+        category: 'clothing',
+      },
+    ],
+  },
+];

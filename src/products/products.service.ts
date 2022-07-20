@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
@@ -17,6 +17,7 @@ export class ProductsService {
       return await this.productRepository.save({ ...createProductDto });
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -25,6 +26,7 @@ export class ProductsService {
       return await this.productRepository.find();
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -33,6 +35,7 @@ export class ProductsService {
       return this.productRepository.findOneOrFail({ where: { id } });
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -44,6 +47,7 @@ export class ProductsService {
       return await this.productRepository.update(id, updateProductDto);
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 
@@ -52,6 +56,7 @@ export class ProductsService {
       return await this.productRepository.delete(id);
     } catch (error) {
       console.error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 }
