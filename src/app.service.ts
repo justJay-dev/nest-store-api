@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  async getHello(): Promise<string> {
+  getHello(): string {
     return 'Hello Nest Store API!!';
   }
 
-  async getHealth(): Promise<string> {
+  getHealth(): string {
     return 'OK';
   }
 }

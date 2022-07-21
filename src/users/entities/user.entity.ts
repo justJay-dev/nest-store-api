@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { EncryptionTransformer } from 'typeorm-encrypted';
-import { authConfig } from 'src/auth/auth.config';
+import { authConfig } from '../../auth/auth.config';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UserResult {

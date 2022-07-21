@@ -1,8 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/users/users.service';
-import { User } from 'src/users/entities/user.entity';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { UsersService } from '../users/users.service';
+import { CreateUserDto } from '../users/dto/create-user.dto';
 import { InternalServerErrorException } from '@nestjs/common';
 
 @Injectable()
@@ -28,16 +27,16 @@ export class AuthService {
   }
 
   async login(body: CreateUserDto) {
-    try {
+    const isValid = await this.validateUser(body.email, body.password);
+
+    if (isValid) {
       const user = await this.usersService.findOneByEmail(body.email);
       const payload = { email: user.email, sub: user.id };
 
       return {
         access_token: this.jwtTokenService.sign(payload),
       };
-    } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException(error);
     }
+    throw new UnauthorizedException();
   }
 }

@@ -45,7 +45,7 @@ export class UsersService {
   }
 
   // don't expose this on a controller please
-  // this surfaces the whole user object.
+  // this surfaces the whole user object including password.
   async findOneByEmail(email: string): Promise<User> {
     try {
       return await this.userRepository.findOneOrFail({

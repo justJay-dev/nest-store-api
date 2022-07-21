@@ -14,6 +14,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Product } from './entities/product.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
+import { SwaggerHttpException } from '../common/types/exceptions.type';
 
 @ApiTags('products')
 @Controller('products')
@@ -34,7 +35,7 @@ export class ProductsController {
   @ApiResponse({
     status: 500,
     description: 'Error',
-    type: HttpException,
+    type: SwaggerHttpException,
   })
   async create(@Body() createProductDto: CreateProductDto) {
     try {
@@ -58,7 +59,7 @@ export class ProductsController {
   @ApiResponse({
     status: 500,
     description: 'Error',
-    type: HttpException,
+    type: SwaggerHttpException,
   })
   async findAll() {
     try {
@@ -82,7 +83,7 @@ export class ProductsController {
   @ApiResponse({
     status: 500,
     description: 'Error',
-    type: HttpException,
+    type: SwaggerHttpException,
   })
   async findOne(@Param('id') id: string) {
     try {
@@ -106,7 +107,7 @@ export class ProductsController {
   @ApiResponse({
     status: 500,
     description: 'Error',
-    type: HttpException,
+    type: SwaggerHttpException,
   })
   async update(
     @Param('id') id: string,
@@ -133,7 +134,7 @@ export class ProductsController {
   @ApiResponse({
     status: 500,
     description: 'Error',
-    type: HttpException,
+    type: SwaggerHttpException,
   })
   async remove(@Param('id') id: string) {
     try {
