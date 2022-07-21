@@ -8,6 +8,8 @@ import { AuthModule } from '../../auth/auth.module';
 describe('UsersService', () => {
   let service: UsersService;
   let moduleRef: TestingModule;
+  let user0Id: number;
+  let user1Id: number;
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
@@ -29,8 +31,8 @@ describe('UsersService', () => {
   });
 
   afterAll(async () => {
-    //await service.remove(1);
-    //await service.remove(2);
+    await service.remove(user0Id);
+    await service.remove(user1Id);
     await moduleRef.close();
   });
 
