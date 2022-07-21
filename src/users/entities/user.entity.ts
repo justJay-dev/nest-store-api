@@ -4,26 +4,26 @@ import { authConfig } from 'src/auth/auth.config';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UserResult {
-  @ApiProperty()
+  @ApiProperty({ example: 1, description: 'User ID' })
   id: number;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'jon@doe.org', description: 'User email' })
   email: string;
 }
 
 @Entity()
 export class User {
-  @ApiProperty()
+  @ApiProperty({ example: 1, description: 'User ID' })
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'jon@doe.org', description: 'User email' })
   @Column({ unique: true })
   email: string;
 
   // pretty please do not use this column in production
   // you will want to not store the key in code, and also in just general, don't roll youe own auth.
-  @ApiProperty()
+  @ApiProperty({ example: '123456', description: 'User password' })
   @Column({
     type: 'varchar',
     nullable: false,

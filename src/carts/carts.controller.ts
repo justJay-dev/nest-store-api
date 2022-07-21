@@ -69,7 +69,7 @@ export class CartsController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a cart' })
+  @ApiOperation({ summary: 'Get a single cart' })
   @ApiResponse({
     status: 200,
     description: 'Successful operation.',
@@ -93,7 +93,9 @@ export class CartsController {
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a cart' })
+  @ApiOperation({
+    summary: "Update a cart's contents.",
+  })
   @ApiResponse({
     status: 200,
     description: 'Successful operation.',

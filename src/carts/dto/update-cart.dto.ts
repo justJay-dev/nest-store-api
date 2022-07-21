@@ -15,9 +15,17 @@ export class UpdateCartDto extends PartialType(CreateCartDto) {
         image: 'https://example.com/product-1.jpg',
         category: 'clothing',
       },
+      {
+        title: 'a great product title2',
+        price: 69.99,
+        description: 'A generic product description2',
+        image: 'https://picsum.photos/200',
+        category: 'not-underwear',
+        id: '2258053e-f0f2-43b6-9972-88fe918ae041',
+      },
     ],
+    description: 'A list of products in the cart, represented as a JSONB array',
   })
   @IsNotEmpty()
-  @IsString()
   products: Product[];
 }
