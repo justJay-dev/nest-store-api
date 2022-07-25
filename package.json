@@ -19,8 +19,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./e2e/jest-e2e.json",
-    "backup": "cp shoppingDBsb.db shoppingDBsb.db.backup",
-    "restore": "cp shoppingDBsb.db.backup shoppingDBsb.db",
+    "backup": "copy shoppingDBsb.db shoppingDBsb.db.backup",
+    "restore": "copy shoppingDBsb.db.backup shoppingDBsb.db",
     "reset": "rimraf shoppingDBsb.db"
   },
   "dependencies": {
