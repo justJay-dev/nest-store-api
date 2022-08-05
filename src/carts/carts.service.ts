@@ -59,4 +59,20 @@ export class CartsService {
       throw new InternalServerErrorException(error);
     }
   }
+
+  async findOrCreateCardByUserId(userId: number): Promise<Cart> {
+    try {
+      const cart = await this.cartRepository.findOneOrFail({
+        where: { userId: userId },
+      });
+
+      if (cart) {
+        return cart;
+      }
+      return await this.cartRepository.save({ userId: userId, products: [] });
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException(error);
+    }
+  }
 }

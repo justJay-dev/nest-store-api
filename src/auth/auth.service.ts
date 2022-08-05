@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import { CartsService } from 'src/carts/carts.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { InternalServerErrorException } from '@nestjs/common';
 
@@ -8,6 +9,7 @@ import { InternalServerErrorException } from '@nestjs/common';
 export class AuthService {
   constructor(
     private usersService: UsersService,
+    private cartService: CartsService,
     private jwtTokenService: JwtService,
   ) {}
 
@@ -32,9 +34,12 @@ export class AuthService {
     if (isValid) {
       const user = await this.usersService.findOneByEmail(body.email);
       const payload = { email: user.email, sub: user.id };
+      const cart = await this.cartService.findOrCreateCardByUserId(user.id);
 
       return {
         access_token: this.jwtTokenService.sign(payload),
+        userId: user.id,
+        cartId: cart.id,
       };
     }
     throw new UnauthorizedException();
