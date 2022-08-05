@@ -5,6 +5,8 @@ import { UsersService } from '../users.service';
 import { mockUsers } from './users.mocks';
 import { AuthModule } from '../../auth/auth.module';
 import { User } from '../entities/user.entity';
+import { Cart } from '../../carts/entities/cart.entity';
+import { CartsModule } from '../../carts/carts.module';
 
 describe('UsersController', () => {
   let controller: UsersController;
@@ -17,13 +19,14 @@ describe('UsersController', () => {
     moduleRef = await Test.createTestingModule({
       imports: [
         AuthModule,
+        CartsModule,
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: 'shoppingDBsb.db',
           entities: ['src/**/*.entity{.ts,.js}'],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([User]),
+        TypeOrmModule.forFeature([User, Cart]),
       ],
       controllers: [UsersController],
       providers: [UsersService],

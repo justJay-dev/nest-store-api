@@ -62,7 +62,7 @@ export class CartsService {
 
   async findOrCreateCardByUserId(userId: number): Promise<Cart> {
     try {
-      const cart = await this.cartRepository.findOneOrFail({
+      const cart = await this.cartRepository.findOne({
         where: { userId: userId },
       });
 
