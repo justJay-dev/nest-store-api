@@ -68,8 +68,8 @@ describe('UsersController', () => {
   });
 
   describe('login', () => {
-    let token0: string = '';
-    let token1: string = '';
+    let token0 = '';
+    let token1 = '';
     it('should return an access token with valid credentials mock 0', async () => {
       const result = await controller.login({
         email: mockUsers[0].email,

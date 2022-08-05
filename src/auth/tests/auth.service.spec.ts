@@ -8,6 +8,7 @@ import { JwtStrategy } from '../strategies/jwt.strategy';
 import { authConfig } from '../auth.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../../users/entities/user.entity';
+import { CartsModule } from 'src/carts/carts.module';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -18,6 +19,7 @@ describe('AuthService', () => {
       imports: [
         UsersModule,
         PassportModule,
+        CartsModule,
         JwtModule.register({
           secret: authConfig.jwtSecret,
           signOptions: { expiresIn: '300s' },
